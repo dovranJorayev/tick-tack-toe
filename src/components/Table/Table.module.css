@@ -1,0 +1,9 @@
+.table {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+}
