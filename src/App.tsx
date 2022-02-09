@@ -1,11 +1,11 @@
 import Table from 'components/Table/Table';
-import { GameContextProvider } from 'contexts/GameContext';
+import { GameStateContextProvider } from 'providers/GameContextProvider';
 
 function App(): JSX.Element {
   return (
-    <GameContextProvider>
+    <GameStateContextProvider>
       <Table/>
-    </GameContextProvider>
+    </GameStateContextProvider>
   );
 }
 
