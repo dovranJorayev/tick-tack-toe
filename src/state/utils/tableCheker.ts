@@ -1,7 +1,7 @@
 import { Row, Table } from 'state/types';
 
 interface WinnerChecher {
-	(table: Table, value: string, dimension: {x: number, y: number}): boolean
+	(table: Table, value: string, dimension: {y: number, x: number}): boolean
 }
 
 export const tableChecker: WinnerChecher = (table, value, dimension) => {
@@ -15,19 +15,19 @@ export const tableChecker: WinnerChecher = (table, value, dimension) => {
 	].some(item => item === true);
 };
   
-const rowChecker: WinnerChecher = (table, value, {x, y}) => {
-	const row = table[x];
+const rowChecker: WinnerChecher = (table, value, {y, x}) => {
+	const row = table[y];
 	return row.every(cell => cell === value);
 };
 
-const columnChecker: WinnerChecher = (table, value, {x, y}) => {
-	const column = table.map( row => row[y]);
+const columnChecker: WinnerChecher = (table, value, {y, x}) => {
+	const column = table.map( row => row[x]);
 	return column.every(cell => cell === value);
 }
   
-const leftDioganalChecker: WinnerChecher = (table, value, {x, y}) => {
+const leftDioganalChecker: WinnerChecher = (table, value, {y, x}) => {
 	/** Only if row and column index equal it is on left dioganal */
-	if(x === y) { 
+	if(y === x) { 
 		const leftDioganal: Array<string|null> = [];
 		for (let i = 0; i < table.length; i++) {
 			leftDioganal.push(table[i][i]);
@@ -39,16 +39,16 @@ const leftDioganalChecker: WinnerChecher = (table, value, {x, y}) => {
 	return false;
 }
   
-const rightDioganalChecker: WinnerChecher = (table, value, {x, y}) => {
+const rightDioganalChecker: WinnerChecher = (table, value, {y, x}) => {
 	/** Right dioganal's line on static 'n' value (table.length) in our case 
-	 * has expression like f(x) = y = (n - 1) - x 
+	 * has expression like f(y) = x = (n - 1) - y 
 		*/
-	if(x + y === table.length - 1) {
+	if(y + x === table.length - 1) {
 		const rightDioganal: Row = [];
 		for (let i = 0; i < table.length; i++) {
-			const x = i;
-			const y = table.length - 1 - i;
-			rightDioganal.push(table[x][y]);
+			const y = i;
+			const x = table.length - 1 - i;
+			rightDioganal.push(table[y][x]);
 		}
 
 		return rightDioganal.every(cell => cell === value);

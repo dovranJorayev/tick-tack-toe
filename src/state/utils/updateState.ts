@@ -11,11 +11,11 @@ export const updateState = (state: GameState, payload: Dimension): GameState => 
   }
   
   export const updateTable = (table: Table, value: GameRole, dimension: Dimension): Table => {
-    const { x, y } = dimension;
-    const row = table[x];
+    const { y, x } = dimension;
+    const row = table[y];
   
-    row.splice(y, 1, value);
-    table.splice(x, 1, [...row]);
+    row.splice(x, 1, value);
+    table.splice(y, 1, [...row]);
   
     return [
       ...table

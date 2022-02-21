@@ -17,8 +17,8 @@ export interface GameContextValue {
 }
 
 export interface Dimension {
-  x: number;
   y: number;
+  x: number;
 }
 
 export interface GameAction {

@@ -51,17 +51,17 @@ function Table(): JSX.Element {
 
       <div className={classes['table']}>
         {
-          table.map((row, x) => (
+          table.map((row, y) => (
             <div 
-              key={x} 
+              key={y} 
               className={classes['row']}
             >
               {
-                row.map( (column, y) => (
+                row.map( (column, x) => (
                   <Cell 
-                    key={y}
-                    x={x}
+                    key={x}
                     y={y}
+                    x={x}
                     value={column}
                   />
                 ))
